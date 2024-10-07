@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Todas as Músicas</h2>
+
+<a href="{% url 'musica_create' %}" class="btn btn-primary mb-3">Criar Música</a>
+
+<ul>
+    {% for musica in object_list %}
+        <li>{{ musica.titulo }} - {{ musica.artista }}
+            <img src="{{ musica.capa.url }}" alt="{{ musica.titulo }}" width=100>
+            <a href="{% url 'musica_detail' musica.pk %}" class="btn btn-primary">Detalhes</a>
+            <a href="{% url 'musica_update' musica.pk %}" class="btn btn-secondary">Editar</a>
+            <a href="{% url 'musica_delete' musica.pk %}" class="btn btn-danger">Excluir</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock  %}
